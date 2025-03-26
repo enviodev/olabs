@@ -1,0 +1,76 @@
+type ConditionalTokens_ApprovalForAll {
+  id: ID!
+  account: String!
+  operator: String!
+  approved: Boolean!
+}
+
+type ConditionalTokens_TransferBatch {
+  id: ID!
+  operator: String!
+  from: String!
+  to: String!
+  ids: [BigInt!]!
+  values: [BigInt!]!
+}
+
+type ConditionalTokens_TransferSingle {
+  id: ID!
+  operator: String!
+  from: String!
+  to: String!
+  event_id: BigInt!
+  value: BigInt!
+}
+
+type ConditionalTokens_URI {
+  id: ID!
+  value: String!
+  event_id: BigInt!
+}
+
+# PositionSplit(address indexed stakeholder, address collateralToken, bytes32 indexed parentCollectionId, bytes32 indexed conditionId, uint[] partition, uint amount)
+type ConditionalTokens_PositionSplit {
+  id: ID!
+  stakeholder: String!
+  collateralToken: String!
+  parentCollectionId: String!
+  conditionId: String!
+  partition: [BigInt!]!
+  amount: BigInt!
+}
+
+# PositionsMerge(address indexed stakeholder, address collateralToken, bytes32 indexed parentCollectionId, bytes32 indexed conditionId, uint[] partition, uint amount);
+type ConditionalTokens_PositionsMerge {
+  id: ID!
+  stakeholder: String!
+  collateralToken: String!
+  parentCollectionId: String!
+  conditionId: String!
+  partition: [BigInt!]!
+  amount: BigInt!
+}
+
+# PayoutRedemption(address indexed redeemer, address indexed collateralToken,  bytes32 indexed parentCollectionId, bytes32 conditionId, uint[] indexSets, uint payout)
+type ConditionalTokens_PayoutRedemption {
+  id: ID!
+  redeemer: String!
+  collateralToken: String!
+  parentCollectionId: String!
+  conditionId: String!
+  indexSets: [BigInt!]!
+  payout: BigInt!
+}
+
+# OrderFilled(bytes32 indexed orderHash, address indexed maker, address indexed taker, uint256 makerAssetId, uint256 takerAssetId, uint256 makerAmountFilled, uint256 takerAmountFilled, uint256 fee)
+type CTFExchange_OrderFilled {
+  id: ID!
+  orderHash: String!
+  maker: String!
+  taker: String!
+  makerAssetId: BigInt!
+  takerAssetId: BigInt!
+  makerAmountFilled: BigInt!
+  takerAmountFilled: BigInt!
+  fee: BigInt!
+}

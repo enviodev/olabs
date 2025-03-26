@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: envio-indexer
+networks:
+- id: 10143
+  start_block: 0
+  contracts:
+  - name: ConditionalTokens
+    address:
+    - 0x9f2515fA41c85208bc51309693e768F577C4B924
+    handler: src/EventHandlers.ts
+    events:
+    - event: ApprovalForAll(address indexed account, address indexed operator, bool approved)
+    - event: TransferBatch(address indexed operator, address indexed from, address indexed to, uint256[] ids, uint256[] values)
+    - event: TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value)
+    - event: URI(string value, uint256 indexed id)
+    - event: PositionSplit(address indexed stakeholder, address collateralToken, bytes32 indexed parentCollectionId, bytes32 indexed conditionId, uint[] partition, uint amount)
+    - event: PositionsMerge(address indexed stakeholder, address collateralToken, bytes32 indexed parentCollectionId, bytes32 indexed conditionId, uint[] partition, uint amount)
+    - event: PayoutRedemption(address indexed redeemer, address indexed collateralToken,  bytes32 indexed parentCollectionId, bytes32 conditionId, uint[] indexSets, uint payout)
+  - name: CTFExchange
+    address: 
+    - 0x1cc00c2669a9ee82ab1088e1b172f9da4bf4bfff
+    handler: src/EventHandlers.ts
+    events: 
+    - event: OrderFilled(bytes32 indexed orderHash, address indexed maker, address indexed taker, uint256 makerAssetId, uint256 takerAssetId, uint256 makerAmountFilled, uint256 takerAmountFilled, uint256 fee)
+unordered_multichain_mode: true
