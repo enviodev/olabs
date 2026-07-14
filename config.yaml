@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=./node_modules/envio/evm.schema.json
 name: envio-indexer
-networks:
+chains:
 - id: 10143
   start_block: 0
   contracts:
@@ -22,4 +22,3 @@ networks:
     handler: src/EventHandlers.ts
     events: 
     - event: OrderFilled(bytes32 indexed orderHash, address indexed maker, address indexed taker, uint256 makerAssetId, uint256 takerAssetId, uint256 makerAmountFilled, uint256 takerAmountFilled, uint256 fee)
-unordered_multichain_mode: true

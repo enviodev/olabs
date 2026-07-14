@@ -1,8 +1,5 @@
 import assert from "assert";
-import { 
-  TestHelpers,
-  ConditionalTokens_ApprovalForAll
-} from "generated";
+import { TestHelpers, ConditionalTokens_ApprovalForAll } from "envio";
 const { MockDb, ConditionalTokens } = TestHelpers;
 
 describe("ConditionalTokens contract ApprovalForAll event tests", () => {

@@ -12,7 +12,7 @@
     "start": "ts-node generated/src/Index.bs.js"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.11",    
+    "@types/chai": "^4.3.11",
     "@types/mocha": "10.0.6",
     "@types/node": "20.8.8",
     "ts-mocha": "^10.0.0",
@@ -22,9 +22,10 @@
     "mocha": "10.2.0"
   },
   "dependencies": {
-    "envio": "2.14.3"
+    "envio": "3.2.1"
   },
-  "optionalDependencies": {
-    "generated": "./generated"
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
   }
 }

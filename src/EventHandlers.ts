@@ -1,20 +1,11 @@
 /*
  * Please refer to https://docs.envio.dev for a thorough guide on all Envio indexer features
  */
-import {
-  ConditionalTokens,
-  ConditionalTokens_ApprovalForAll,
-  ConditionalTokens_TransferBatch,
-  ConditionalTokens_TransferSingle,
-  ConditionalTokens_PositionSplit,
-  ConditionalTokens_PositionsMerge,
-  ConditionalTokens_PayoutRedemption,
-  ConditionalTokens_URI,
-  CTFExchange,
-  CTFExchange_OrderFilled
-} from "generated";
+import { indexer, ConditionalTokens_ApprovalForAll, ConditionalTokens_TransferBatch, ConditionalTokens_TransferSingle, ConditionalTokens_PositionSplit, ConditionalTokens_PositionsMerge, ConditionalTokens_PayoutRedemption, ConditionalTokens_URI, CTFExchange_OrderFilled } from "envio";
 
-ConditionalTokens.ApprovalForAll.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "ConditionalTokens", event: "ApprovalForAll" },
+  async ({ event, context }) => {
   const entity: ConditionalTokens_ApprovalForAll = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     account: event.params.account,
@@ -23,9 +14,12 @@ ConditionalTokens.ApprovalForAll.handler(async ({ event, context }) => {
   };
 
   context.ConditionalTokens_ApprovalForAll.set(entity);
-});
+}
+);
 
-ConditionalTokens.TransferBatch.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "ConditionalTokens", event: "TransferBatch" },
+  async ({ event, context }) => {
   const entity: ConditionalTokens_TransferBatch = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     operator: event.params.operator,
@@ -36,9 +30,12 @@ ConditionalTokens.TransferBatch.handler(async ({ event, context }) => {
   };
 
   context.ConditionalTokens_TransferBatch.set(entity);
-});
+}
+);
 
-ConditionalTokens.TransferSingle.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "ConditionalTokens", event: "TransferSingle" },
+  async ({ event, context }) => {
   const entity: ConditionalTokens_TransferSingle = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     operator: event.params.operator,
@@ -49,9 +46,12 @@ ConditionalTokens.TransferSingle.handler(async ({ event, context }) => {
   };
 
   context.ConditionalTokens_TransferSingle.set(entity);
-});
+}
+);
 
-ConditionalTokens.URI.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "ConditionalTokens", event: "URI" },
+  async ({ event, context }) => {
   const entity: ConditionalTokens_URI = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     value: event.params.value,
@@ -59,10 +59,13 @@ ConditionalTokens.URI.handler(async ({ event, context }) => {
   };
 
   context.ConditionalTokens_URI.set(entity);
-});
+}
+);
 
 // PositionSplit(address indexed stakeholder, address collateralToken, bytes32 indexed parentCollectionId, bytes32 indexed conditionId, uint[] partition, uint amount)
-ConditionalTokens.PositionSplit.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "ConditionalTokens", event: "PositionSplit" },
+  async ({ event, context }) => {
   const entity: ConditionalTokens_PositionSplit = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     stakeholder: event.params.stakeholder,
@@ -74,10 +77,13 @@ ConditionalTokens.PositionSplit.handler(async ({ event, context }) => {
   };
 
   context.ConditionalTokens_PositionSplit.set(entity);
-});
+}
+);
 
 // PositionsMerge(address indexed stakeholder, address collateralToken, bytes32 indexed parentCollectionId, bytes32 indexed conditionId, uint[] partition, uint amount);
-ConditionalTokens.PositionsMerge.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "ConditionalTokens", event: "PositionsMerge" },
+  async ({ event, context }) => {
   const entity: ConditionalTokens_PositionsMerge = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     stakeholder: event.params.stakeholder,
@@ -89,10 +95,13 @@ ConditionalTokens.PositionsMerge.handler(async ({ event, context }) => {
   };
 
   context.ConditionalTokens_PositionsMerge.set(entity);
-});
+}
+);
 
 // PayoutRedemption(address indexed redeemer, address indexed collateralToken,  bytes32 indexed parentCollectionId, bytes32 conditionId, uint[] indexSets, uint payout)
-ConditionalTokens.PayoutRedemption.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "ConditionalTokens", event: "PayoutRedemption" },
+  async ({ event, context }) => {
   const entity: ConditionalTokens_PayoutRedemption = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     redeemer: event.params.redeemer,
@@ -104,10 +113,13 @@ ConditionalTokens.PayoutRedemption.handler(async ({ event, context }) => {
   };
 
   context.ConditionalTokens_PayoutRedemption.set(entity);
-});
+}
+);
 
 // OrderFilled(bytes32 indexed orderHash, address indexed maker, address indexed taker, uint256 makerAssetId, uint256 takerAssetId, uint256 makerAmountFilled, uint256 takerAmountFilled, uint256 fee)
-CTFExchange.OrderFilled.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "CTFExchange", event: "OrderFilled" },
+  async ({ event, context }) => {
   const entity: CTFExchange_OrderFilled = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     orderHash: event.params.orderHash,
@@ -121,4 +133,5 @@ CTFExchange.OrderFilled.handler(async ({ event, context }) => {
   };
 
   context.CTFExchange_OrderFilled.set(entity);
-});
+}
+);
